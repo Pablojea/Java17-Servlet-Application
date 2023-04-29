@@ -7,7 +7,7 @@
      <description> Servlet de la práctica 2 de SINT</description>
      <servlet>
            <servlet-name>Servlet P2</servlet-name>
-           <servlet-class> HelloWorld</servlet-class>
+           <servlet-class> HelloWorld </servlet-class>
      </servlet>
      <servlet-mapping>
            <servlet-name>Servlet P2</servlet-name>
