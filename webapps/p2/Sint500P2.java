@@ -1,16 +1,19 @@
+package p2;
 import java.io.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
-public class HelloWorld extends HttpServlet {
+public class Sint500P2 extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res){
 
         try {
+
             this.log("se imprime en tomcat/logs/localhost.fechadehoy.log");
             System.out.println("se imprime en tomcat/logs/catalina.out");
             res.setContentType("text/html");
             PrintWriter out = res.getWriter();
             String user = req.getParameter("user");
+
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Hello World!</title>");

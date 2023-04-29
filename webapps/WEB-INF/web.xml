@@ -6,11 +6,11 @@
      <display-name>Servlet P2</display-name>
      <description> Servlet de la práctica 2 de SINT</description>
      <servlet>
-           <servlet-name>Servlet P2</servlet-name>
-           <servlet-class> HelloWorld </servlet-class>
+           <servlet-name>Sint500P2</servlet-name>
+           <servlet-class> p2.Sint500P2 </servlet-class>
      </servlet>
      <servlet-mapping>
-           <servlet-name>Servlet P2</servlet-name>
+           <servlet-name>Sint500P2</servlet-name>
            <url-pattern> /P2 </url-pattern>   
 </servlet-mapping>
 </web-app>
