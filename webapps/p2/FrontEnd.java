@@ -1,6 +1,7 @@
 package p2;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public abstract class FrontEnd {
 
@@ -35,7 +36,7 @@ public abstract class FrontEnd {
         out.println("</html>");
     }
 
-    static void printScreen21(PrintWriter out, String p, String auto){
+    static void printScreen21(PrintWriter out, String p, String auto, ArrayList<String> langs){
 
         out.println("<!DOCTYPE html>");
         out.println("<html lang='es'>");

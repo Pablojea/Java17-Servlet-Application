@@ -2,13 +2,14 @@ package p2;
 import java.io.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
+import java.util.ArrayList;
 
 // this.log("se imprime en tomcat/logs/localhost.fechadehoy.log");
 
 public class Sint500P2 extends HttpServlet {
 
     // este método se ejecuta una única vez al arrancar el tomcat
-    public void init(){       
+    public void init(){              
         
         // esta linea sólo sirve para separar visiblemente las distintas ejecuciones en catalina.out
         System.out.println("-".repeat(500));
@@ -56,13 +57,13 @@ public class Sint500P2 extends HttpServlet {
             switch(param_phase) {
                 case "01", "null" -> FrontEnd.printScreen01(out, param_p, param_auto);
                 case "02" -> FrontEnd.printScreen02(out, param_p, param_auto);
-                case "21" -> FrontEnd.printScreen21(out, param_p, param_auto);
+                case "21" -> FrontEnd.printScreen21(out, param_p, param_auto, DataModel.getQ2Langs());
                 case "22" -> FrontEnd.printScreen22(out, param_p, param_auto);
                 case "23" -> FrontEnd.printScreen23(out, param_p, param_auto);
                 default -> FrontEnd.printEmpty(out);
             }
-
             
+
         }
         catch (Exception ex) {
             System.out.println("Algo fue mal: " + ex.toString());
