@@ -4,7 +4,8 @@ import java.io.*;
 
 public class FrontEnd {
 
-    static void printScreen01(PrintWriter out, String p){
+    static void printScreen01(PrintWriter out, String p, String auto){
+
         out.println("<!DOCTYPE html>");
         out.println("<html lang='es'>");
         out.println("<html>");
@@ -15,6 +16,68 @@ public class FrontEnd {
         out.println("<h1>Screen 01</h1>");
         out.println("<p><a href='?pphase=02&p="+p+"'>Ver los ficheros erroneos</a><p>");
         out.println("<p><a href='?pphase=21&p="+p+"'>Consulta2: álbumes de una compañia con canciones en un idioma.</a><p>");
+        out.println("</body>");
+        out.println("</html>");
+    }
+
+    static void printScreen02(PrintWriter out, String p, String auto){
+
+        out.println("<!DOCTYPE html>");
+        out.println("<html lang='es'>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title> Sint500P2 </title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1>Screen 02</h1>");
+        out.println("<p><a href='?pphase=01&p="+p+"'>Atrás</a><p>");        
+        out.println("</body>");
+        out.println("</html>");
+    }
+
+    static void printScreen21(PrintWriter out, String p, String auto){
+
+        out.println("<!DOCTYPE html>");
+        out.println("<html lang='es'>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title> Sint500P2 </title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1>Screen 21</h1>");
+        out.println("<p><a href='?pphase=22&p="+p+"'>Siguiente</a><p>");
+        out.println("<p><a href='?pphase=01&p="+p+"'>Atrás</a><p>");
+        out.println("</body>");
+        out.println("</html>");
+    } 
+
+    static void printScreen22(PrintWriter out, String p, String auto){
+
+        out.println("<!DOCTYPE html>");
+        out.println("<html lang='es'>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title> Sint500P2 </title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1>Screen 22</h1>");
+        out.println("<p><a href='?pphase=23&p="+p+"'>Siguiente</a><p>");
+        out.println("<p><a href='?pphase=21&p="+p+"'>Atrás</a><p>");
+        out.println("</body>");
+        out.println("</html>");
+    }
+
+    static void printScreen23(PrintWriter out, String p, String auto){
+
+        out.println("<!DOCTYPE html>");
+        out.println("<html lang='es'>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title> Sint500P2 </title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1>Screen 23</h1>");        
+        out.println("<p><a href='?pphase=22&p="+p+"'>Atrás</a><p>");
         out.println("</body>");
         out.println("</html>");
     }

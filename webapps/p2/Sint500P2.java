@@ -6,6 +6,7 @@ import jakarta.servlet.http.*;
 public class Sint500P2 extends HttpServlet {
 
     public void init(){
+
         //this.log("se imprime en tomcat/logs/localhost.fechadehoy.log");
         //System.out.println("se imprime en tomcat/logs/catalina.out");
 
@@ -31,7 +32,11 @@ public class Sint500P2 extends HttpServlet {
             PrintWriter out = res.getWriter();
             
             switch(param_phase) {
-                case "01", "null" -> FrontEnd.printScreen01(out,param_p);
+                case "01", "null" -> FrontEnd.printScreen01(out,param_p, param_auto);
+                case "02" -> FrontEnd.printScreen02(out,param_p, param_auto);
+                case "21" -> FrontEnd.printScreen21(out,param_p, param_auto);
+                case "22" -> FrontEnd.printScreen22(out,param_p, param_auto);
+                case "23" -> FrontEnd.printScreen23(out,param_p, param_auto);
                 default -> FrontEnd.printEmpty(out);
             }
 
