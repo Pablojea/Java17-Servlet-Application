@@ -2,7 +2,7 @@ package p2;
 
 import java.io.*;
 
-public class FrontEnd {
+public abstract class FrontEnd {
 
     static void printScreen01(PrintWriter out, String p, String auto){
 

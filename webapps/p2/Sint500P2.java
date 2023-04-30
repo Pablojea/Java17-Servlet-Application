@@ -32,7 +32,7 @@ public class Sint500P2 extends HttpServlet {
             String param_sid = req.getParameter("ppsid") == null ? "0" : req.getParameter("ppsid");
 
 
-            // este bloque sólo sirve para debugear el programa logeando las reqests a catalina.out
+            // este bloque sólo sirve para debugear el programa logeando las requests a catalina.out
             String logString = """
 
             Log line: Lista de parámetros de la petición ->
