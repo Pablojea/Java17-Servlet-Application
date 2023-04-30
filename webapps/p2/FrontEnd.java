@@ -46,6 +46,12 @@ public abstract class FrontEnd {
         out.println("</head>");
         out.println("<body>");
         out.println("<h1>Screen 21</h1>");
+
+
+        for(String lang: langs){                      
+            out.println("<p><a href='?pphase=22&p="+p+"&plang="+lang+"'"+">"+ lang + "</a><p>");                    
+        }
+
         out.println("<p><a href='?pphase=22&p="+p+"'>Siguiente</a><p>");
         out.println("<p><a href='?pphase=01&p="+p+"'>Atrás</a><p>");
         out.println("</body>");
