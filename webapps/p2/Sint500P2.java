@@ -3,19 +3,17 @@ import java.io.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
+// this.log("se imprime en tomcat/logs/localhost.fechadehoy.log");
+
 public class Sint500P2 extends HttpServlet {
 
-
     // este método se ejecuta una única vez al arrancar el tomcat
-    public void init(){
-
-        // this.log("se imprime en tomcat/logs/localhost.fechadehoy.log");
+    public void init(){       
         
         // esta linea sólo sirve para separar visiblemente las distintas ejecuciones en catalina.out
         System.out.println("-".repeat(500));
 
     }
-
 
     //este método se llama cada vez que hay una solicitud al servlet (se invoca una pantalla)
     public void doGet(HttpServletRequest req, HttpServletResponse res){
@@ -56,11 +54,11 @@ public class Sint500P2 extends HttpServlet {
 
             //en función del parámetro phase se mostrará una pantalla u otra
             switch(param_phase) {
-                case "01", "null" -> FrontEnd.printScreen01(out,param_p, param_auto);
-                case "02" -> FrontEnd.printScreen02(out,param_p, param_auto);
-                case "21" -> FrontEnd.printScreen21(out,param_p, param_auto);
-                case "22" -> FrontEnd.printScreen22(out,param_p, param_auto);
-                case "23" -> FrontEnd.printScreen23(out,param_p, param_auto);
+                case "01", "null" -> FrontEnd.printScreen01(out, param_p, param_auto);
+                case "02" -> FrontEnd.printScreen02(out, param_p, param_auto);
+                case "21" -> FrontEnd.printScreen21(out, param_p, param_auto);
+                case "22" -> FrontEnd.printScreen22(out, param_p, param_auto);
+                case "23" -> FrontEnd.printScreen23(out, param_p, param_auto);
                 default -> FrontEnd.printEmpty(out);
             }
 
