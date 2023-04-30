@@ -1,5 +1,6 @@
-#Servicios de Internet: Práctica 2 (Servlets)
+# Servicios de Internet: Práctica 2 (Servlets)
 
-dependencias:
+## Dependencias:
 java 17
+
 apache-tomcat-10.1.8
