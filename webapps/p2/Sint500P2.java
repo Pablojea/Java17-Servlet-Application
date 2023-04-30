@@ -30,16 +30,12 @@ public class Sint500P2 extends HttpServlet {
 
             PrintWriter out = res.getWriter();
             
-            // out.println("<html>");
-            // out.println("<head>");
-            // out.println("<title>Hello World!</title>");
-            // out.println("</head>");
-            // out.println("<body>");
-            // out.println("<h1>Hello World!</h1>");
-            // out.println("</body>");
-            // out.println("</html>");
+            switch(param_phase) {
+                case "01", "null" -> FrontEnd.printScreen01(out,param_p);
+                default -> FrontEnd.printEmpty(out);
+            }
 
-            FrontEnd.printLandingPage(out);
+            
         }
         catch (Exception ex) {
             System.out.println("Algo fue mal: " + ex.toString());
