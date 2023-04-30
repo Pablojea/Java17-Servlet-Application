@@ -18,6 +18,8 @@ public class Sint500P2 extends HttpServlet {
 
         try {
 
+            System.out.println("Log line: Peticion HTTP con método GET.");
+
             // set content and encoding for http response
             res.setCharacterEncoding("utf-8");
             res.setContentType("text/html");
@@ -27,7 +29,23 @@ public class Sint500P2 extends HttpServlet {
             String param_auto = req.getParameter("auto") == null ? "false" : req.getParameter("auto");
             String param_phase = req.getParameter("pphase") == null ? "01" : req.getParameter("pphase");        
             String param_lang = req.getParameter("plang") == null ? "es" : req.getParameter("plang");
-            String Param_sid = req.getParameter("ppsid") == null ? "0" : req.getParameter("ppsid");
+            String param_sid = req.getParameter("ppsid") == null ? "0" : req.getParameter("ppsid");
+
+
+            // este bloque sólo sirve para debugear el programa logeando las reqests a catalina.out
+            String logString = """
+
+            Log line: Lista de parámetros de la petición ->
+            param_p: %s,
+            param_auto: %s,
+            param_phase: %s,
+            param_lang = %s,
+            param_sid: %s
+
+            """;
+
+            System.out.println(String.format(logString, param_p, param_auto, param_phase, param_lang, param_sid));
+            // fin del bloque de debug
 
             PrintWriter out = res.getWriter();
             
