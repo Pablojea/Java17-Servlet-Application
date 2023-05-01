@@ -28,11 +28,11 @@ public class Sint500P2 extends HttpServlet {
             res.setContentType("text/html");
 
             //get all possible parameters from the request url
-            String param_p = req.getParameter("p") == null ? "01" : req.getParameter("p");            
+            String param_p = req.getParameter("p") == null ? "null" : req.getParameter("p");            
             String param_auto = req.getParameter("auto") == null ? "false" : req.getParameter("auto");
-            String param_phase = req.getParameter("pphase") == null ? "01" : req.getParameter("pphase");        
-            String param_lang = req.getParameter("plang") == null ? "es" : req.getParameter("plang");
-            String param_sid = req.getParameter("ppsid") == null ? "0" : req.getParameter("ppsid");
+            String param_phase = req.getParameter("pphase") == null ? "null" : req.getParameter("pphase");        
+            String param_lang = req.getParameter("plang") == null ? "null" : req.getParameter("plang");
+            String param_sid = req.getParameter("ppsid") == null ? "null" : req.getParameter("ppsid");
 
 
             // este bloque sólo sirve para debugear el programa logeando las requests a catalina.out
@@ -58,7 +58,7 @@ public class Sint500P2 extends HttpServlet {
                 case "01", "null" -> FrontEnd.printScreen01(out, param_p, param_auto);
                 case "02" -> FrontEnd.printScreen02(out, param_p, param_auto);
                 case "21" -> FrontEnd.printScreen21(out, param_p, param_auto, DataModel.getQ2Langs());
-                case "22" -> FrontEnd.printScreen22(out, param_p, param_auto);
+                case "22" -> FrontEnd.printScreen22(out, param_p, param_auto, param_lang, DataModel.getQ2Songs(param_lang));
                 case "23" -> FrontEnd.printScreen23(out, param_p, param_auto);
                 default -> FrontEnd.printEmpty(out);
             }

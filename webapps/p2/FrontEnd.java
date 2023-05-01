@@ -58,7 +58,7 @@ public abstract class FrontEnd {
         out.println("</html>");
     } 
 
-    static void printScreen22(PrintWriter out, String p, String auto){
+    static void printScreen22(PrintWriter out, String p, String auto, String lang, ArrayList<Song> songs){
 
         out.println("<!DOCTYPE html>");
         out.println("<html lang='es'>");
@@ -68,6 +68,12 @@ public abstract class FrontEnd {
         out.println("</head>");
         out.println("<body>");
         out.println("<h1>Screen 22</h1>");
+
+        for(Song song: songs){                      
+            out.println("<p><a href='?pphase=23&p="+p+"&plang="+lang+  "&psid=" + song.getSid() + "'"+">"+ song.getTitle() + "</a><p>");                    
+        }
+
+
         out.println("<p><a href='?pphase=23&p="+p+"'>Siguiente</a><p>");
         out.println("<p><a href='?pphase=21&p="+p+"'>Atrás</a><p>");
         out.println("</body>");
