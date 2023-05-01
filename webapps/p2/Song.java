@@ -12,6 +12,24 @@ public class Song {
     private String sid;
     private String lang;
 
+    public Song(String title, int duration, ArrayList<String> genres, String composer, ArrayList<String> mumls, String sid, String lang){
+
+        this.title = title;
+        this.duration = duration;
+        this.genres = genres;
+        this.composer = composer;
+        this.mumls = mumls;
+        this.sid = sid;
+        this.lang = lang;
+    }
+
+    public Song(String title, String lang, String sid){
+        
+        this.title = title;
+        this.lang = lang;
+        this.sid = sid;
+    }
+
     String getTitle(){
         return this.title;
     }
