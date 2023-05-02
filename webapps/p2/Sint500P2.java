@@ -59,7 +59,7 @@ public class Sint500P2 extends HttpServlet {
                 case "02" -> FrontEnd.printScreen02(out, param_p, param_auto);
                 case "21" -> FrontEnd.printScreen21(out, param_p, param_auto, DataModel.getQ2Langs());
                 case "22" -> FrontEnd.printScreen22(out, param_p, param_auto, param_lang, DataModel.getQ2Songs(param_lang));
-                case "23" -> FrontEnd.printScreen23(out, param_p, param_auto);
+                case "23" -> FrontEnd.printScreen23(out, param_p, param_auto, param_lang, param_sid, DataModel.getQ2Albums(param_lang, param_sid));
                 default -> FrontEnd.printEmpty(out);
             }
             

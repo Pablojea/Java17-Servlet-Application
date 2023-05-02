@@ -9,7 +9,6 @@ public abstract class DataModel {
     static ArrayList<String> getQ2Langs(){
 
         ArrayList<String> langs = new ArrayList<>();
-
         langs.add("es");
         langs.add("en");
         langs.add("fr");
@@ -24,32 +23,35 @@ public abstract class DataModel {
     // en este momento see crean algunas canciones falsas para algunos de los idiomas creados
     // de momento sólo contienen título, idioma, y sid, para poder continuar a la última pantalla
     static ArrayList<Song> getQ2Songs(String lang){
-        
+
         ArrayList<Song> allSongs = new ArrayList<>();
-        String auxLang = "";        
 
-        for(int i = 0; i < 9; i++){
+        for(int i = 0; i < 5; i++){
 
-            if(i % 2 ==0){
-                auxLang = "es";
+            Song newSong1 = new Song(
+                "song es" + i,
+                300,
+                null,
+                "Sawano",
+                null,
+                "es" + i,
+                "es"
+            );
 
-            }else{
-                auxLang = "it";
-            }
-            
-            allSongs.add(new Song("song" + i, auxLang, "1"));
+            Song newSong2 = new Song(
+                "song en" +i,
+                300,
+                null,
+                "Sawano",
+                null,
+                "en" + i,
+                "en"
+            );
+
+            allSongs.add(newSong1);
+            allSongs.add(newSong2);
         }
 
-        for(int i = 0; i < 9; i++){
-            if(i % 2 ==0){
-                auxLang = "de";
-
-            }else{
-                auxLang = "gl";
-            }
-
-            allSongs.add(new Song("song" + i, auxLang, "2"));
-        }
 
         ArrayList<Song> langSongs = new ArrayList<>();
 
@@ -66,8 +68,11 @@ public abstract class DataModel {
 
 
 
-    // ArrayList<Album> getQ2Albums(String lang, String sid){
+    static ArrayList<Album> getQ2Albums(String lang, String sid){
 
-    // }
+        ArrayList<Album> albums = new ArrayList<>();
+        return albums;
+
+    }
 
 }
