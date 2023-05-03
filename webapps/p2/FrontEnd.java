@@ -47,9 +47,13 @@ public abstract class FrontEnd {
         out.println("<body>");
         out.println("<h1>Screen 21</h1>");        
 
+        out.println("<ul style='list-style-type:none'>");
+
         for(String lang: langs){                      
-            out.println("<a style='text-decoration: none' href='?pphase=22&p="+p+"&plang="+lang+"'"+">"+ lang + "</a> <br>");                    
-        }        
+            out.println("<li><a style='text-decoration: none' href='?pphase=22&p="+p+"&plang="+lang+"'"+">"+ lang + "</a> </li>");                    
+        } 
+
+        out.println("</ul>");     
 
         out.println("<p><a style='text-decoration: none' href='?pphase=22&p="+p+"'>Siguiente</a><p>");
         out.println("<p><a style='text-decoration: none' href='?pphase=01&p="+p+"'>Atrás</a><p>");
@@ -73,7 +77,7 @@ public abstract class FrontEnd {
         for(Song song: songs){      
 
             String songInfo =" --- " +"Álbum = null --- Duración = " + song.getDuration() + " --- Géneros = " + song.getGenres();              
-            out.println("<li><a style='text-decoration: none' href='?pphase=23&p="+p+"&plang="+lang+  "&psid=" + song.getSid() + "'"+">"+ song.getTitle() + "</a>" + songInfo+ "</li>");                    
+            out.println("<li><a style='text-decoration: none' href='?pphase=23&p="+p+"&plang="+lang+  "&psid=" + song.getSid() + "'"+">"+ "  " + song.getTitle() + "</a>" + songInfo+ "</li>");                    
         }
 
         out.println("</ol>");
@@ -93,7 +97,19 @@ public abstract class FrontEnd {
         out.println("<title> Sint500P2 </title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>Screen 23</h1>");        
+        out.println("<h1>Screen 23</h1>");  
+
+        out.println("<ol>");
+
+        for(Album album: albums){      
+
+            String albumInfo =" Álbum = " + album.getName() + " --- País = " + album.getCountry() + " --- Compañía = " + album.getCompany() + " --- Crítica = " + album.getReview() ;              
+            out.println("<li>" + albumInfo + "</li>");    
+
+        }
+
+        out.println("</ol>");       
+
         out.println("<p><a style='text-decoration: none' href='?pphase=22&p="+p+ "&plang=" + lang + "'>Atrás</a><p>");
         out.println("</body>");
         out.println("</html>");

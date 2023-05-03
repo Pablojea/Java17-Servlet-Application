@@ -12,7 +12,7 @@ public class Sint500P2 extends HttpServlet {
     public void init(){              
         
         // esta linea sólo sirve para separar visiblemente las distintas ejecuciones en catalina.out
-        System.out.println("-".repeat(500));
+        System.out.println("-".repeat(100));
 
     }
 
@@ -32,7 +32,7 @@ public class Sint500P2 extends HttpServlet {
             String param_auto = req.getParameter("auto") == null ? "false" : req.getParameter("auto");
             String param_phase = req.getParameter("pphase") == null ? "null" : req.getParameter("pphase");        
             String param_lang = req.getParameter("plang") == null ? "null" : req.getParameter("plang");
-            String param_sid = req.getParameter("ppsid") == null ? "null" : req.getParameter("ppsid");
+            String param_sid = req.getParameter("psid") == null ? "null" : req.getParameter("psid");
 
 
             // este bloque sólo sirve para debugear el programa logeando las requests a catalina.out

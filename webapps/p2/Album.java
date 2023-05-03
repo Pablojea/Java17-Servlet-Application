@@ -10,10 +10,22 @@ public class Album {
     private String group;
     private String isbn;
     private String company;
+    private String review;
     private ArrayList<Song> songs;
     private String aid;
     private ArrayList<String> formats;
     private int year;
+
+    public Album(String name, String country, String company, String review){
+
+        this.name = name;
+        this.country = country;
+        this.company = company;
+        this.review = review;
+        this.songs = new ArrayList<Song>();
+
+    };
+
 
     String getName(){
         return this.name;
@@ -37,6 +49,10 @@ public class Album {
 
     String getCompany(){
         return this.company;
+    }
+
+    String getReview(){
+        return this.review;
     }
 
     ArrayList<Song> getSongs(){
@@ -79,6 +95,10 @@ public class Album {
         this.company = company;
     }
 
+    void setReview(String review){
+        this.review = review;
+    }
+
     void setSongs(ArrayList<Song> songs){
         this.songs = songs;
     }
@@ -94,6 +114,23 @@ public class Album {
     void getYear(int year){
         this.year = year;
     }
+
+    void addSong(Song song){
+        songs.add(song);
+    }
+
+    boolean hasSong(String lang, String sid){
+
+        for(Song song: songs){
+
+            if(lang.equals(song.getLang()) && sid.equals(song.getSid())){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
 
 }

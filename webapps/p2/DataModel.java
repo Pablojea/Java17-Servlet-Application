@@ -71,7 +71,43 @@ public abstract class DataModel {
     static ArrayList<Album> getQ2Albums(String lang, String sid){
 
         ArrayList<Album> albums = new ArrayList<>();
-        return albums;
+        String tmpCompany ="";
+
+
+        for(int i = 0; i < 10; i++){
+            albums.add(new Album("album sony "+i, "spain", "sony records", "buena wea"));
+        }
+
+        for(int i = 0; i < 10; i++){
+            albums.add(new Album("album jony "+i, "spain", "jony records", "bacano"));
+        }
+
+        for(int i = 0; i < 10; i++){
+            Album newAlbum =new Album("album honey "+i, "spain", "honey records", "buena wea");
+            newAlbum.addSong(new Song("megalocumbia", lang, sid));
+            albums.add(newAlbum);
+        }
+
+
+        for(Album album: albums){
+
+            if(album.hasSong(lang, sid)){
+                tmpCompany = album.getCompany();
+                break;
+            }
+
+        }
+
+        ArrayList<Album> songAlbums = new ArrayList<>();
+
+        for(Album album: albums){
+            
+            if(album.getCompany().equals(tmpCompany)){
+                songAlbums.add(album);
+            }
+        }
+
+        return songAlbums;
 
     }
 
