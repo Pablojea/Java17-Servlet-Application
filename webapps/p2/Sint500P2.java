@@ -31,7 +31,7 @@ public class Sint500P2 extends HttpServlet {
             res.setContentType("text/html");
 
             //get all possible parameters from the request url
-            String param_p = req.getParameter("p") == null ? "null" : req.getParameter("p");            
+            String param_p = req.getParameter("p") == null ? null : req.getParameter("p");            
             String param_auto = req.getParameter("auto") == null ? "false" : req.getParameter("auto");
             String param_phase = req.getParameter("pphase") == null ? "null" : req.getParameter("pphase");        
             String param_lang = req.getParameter("plang") == null ? "null" : req.getParameter("plang");
@@ -57,11 +57,15 @@ public class Sint500P2 extends HttpServlet {
             
 
             //validación de la contraseña
-            if(!param_p.equals(password) || param_p == null){                
-                FrontEnd.printEmpty(out);
+            if(param_p == null){          
+
+                FrontEnd.printPasswordError(out, true);
+            }
+            else if(!param_p.equals(password)){
+
+                FrontEnd.printPasswordError(out, false);
             }
             else{
-
                 //en función del parámetro phase se mostrará una pantalla u otra
                 switch(param_phase) {
                     case "01", "null" -> FrontEnd.printScreen01(out, param_p, param_auto);
@@ -71,8 +75,7 @@ public class Sint500P2 extends HttpServlet {
                     case "23" -> FrontEnd.printScreen23(out, param_p, param_auto, param_lang, param_sid, DataModel.getQ2Albums(param_lang, param_sid));
                     default -> FrontEnd.printEmpty(out);
                 }
-            }
-            
+            }            
 
         }
         catch (Exception ex) {

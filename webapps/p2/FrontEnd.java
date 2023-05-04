@@ -115,6 +115,28 @@ public abstract class FrontEnd {
         out.println("</html>");
     }
 
+    static void printPasswordError(PrintWriter out, boolean noPassword){
+
+        out.println("<!DOCTYPE html>");
+        out.println("<html lang='es'>");       
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title> Sint500P2 </title>");
+        out.println("</head>");
+        out.println("<body>");
+
+        if(noPassword){
+            out.println("<h1> FALTA EL PARÁMETRO P </h1>");
+        }
+        else{
+            out.println("<h1> PARÁMETRO P INCORRECTO </h1>");
+        }
+
+        out.println("<p><a style='text-decoration: none' href='?pphase=01'> Inicio </a><p>");
+        out.println("</body>");
+        out.println("</html>");
+    }
+
     static void printEmpty(PrintWriter out){
 
         out.println("<!DOCTYPE html>");
