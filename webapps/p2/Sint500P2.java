@@ -8,9 +8,12 @@ import java.util.ArrayList;
 
 public class Sint500P2 extends HttpServlet {
 
+    String password;
+
     // este método se ejecuta una única vez al arrancar el tomcat
-    public void init(){              
-        
+    public void init(){   
+
+        password = "1234";
         // esta linea sólo sirve para separar visiblemente las distintas ejecuciones en catalina.out
         System.out.println("-".repeat(100));
 
@@ -53,14 +56,21 @@ public class Sint500P2 extends HttpServlet {
             PrintWriter out = res.getWriter();
             
 
-            //en función del parámetro phase se mostrará una pantalla u otra
-            switch(param_phase) {
-                case "01", "null" -> FrontEnd.printScreen01(out, param_p, param_auto);
-                case "02" -> FrontEnd.printScreen02(out, param_p, param_auto);
-                case "21" -> FrontEnd.printScreen21(out, param_p, param_auto, DataModel.getQ2Langs());
-                case "22" -> FrontEnd.printScreen22(out, param_p, param_auto, param_lang, DataModel.getQ2Songs(param_lang));
-                case "23" -> FrontEnd.printScreen23(out, param_p, param_auto, param_lang, param_sid, DataModel.getQ2Albums(param_lang, param_sid));
-                default -> FrontEnd.printEmpty(out);
+            //validación de la contraseña
+            if(!param_p.equals(password) || param_p == null){                
+                FrontEnd.printEmpty(out);
+            }
+            else{
+
+                //en función del parámetro phase se mostrará una pantalla u otra
+                switch(param_phase) {
+                    case "01", "null" -> FrontEnd.printScreen01(out, param_p, param_auto);
+                    case "02" -> FrontEnd.printScreen02(out, param_p, param_auto);
+                    case "21" -> FrontEnd.printScreen21(out, param_p, param_auto, DataModel.getQ2Langs());
+                    case "22" -> FrontEnd.printScreen22(out, param_p, param_auto, param_lang, DataModel.getQ2Songs(param_lang));
+                    case "23" -> FrontEnd.printScreen23(out, param_p, param_auto, param_lang, param_sid, DataModel.getQ2Albums(param_lang, param_sid));
+                    default -> FrontEnd.printEmpty(out);
+                }
             }
             
 
