@@ -24,11 +24,7 @@ public class Sint500P2 extends HttpServlet {
 
         try {
 
-            System.out.println("Log line: Peticion HTTP con método GET.");
-
-            // set content and encoding for http response
-            res.setCharacterEncoding("utf-8");
-            res.setContentType("text/html");
+            System.out.println("Log line: Peticion HTTP con método GET.");           
 
             //get all possible parameters from the request url
             String param_p = req.getParameter("p") == null ? null : req.getParameter("p");            
@@ -37,6 +33,12 @@ public class Sint500P2 extends HttpServlet {
             String param_lang = req.getParameter("plang") == null ? "null" : req.getParameter("plang");
             String param_sid = req.getParameter("psid") == null ? "null" : req.getParameter("psid");
 
+
+            // set content and encoding for http response            
+            if(param_auto.equals("false")){ 
+                res.setCharacterEncoding("utf-8");    
+                res.setContentType("text/html");
+            }
 
             // este bloque sólo sirve para debugear el programa logeando las requests a catalina.out
             String logString = """
@@ -59,11 +61,11 @@ public class Sint500P2 extends HttpServlet {
             //validación de la contraseña
             if(param_p == null){          
 
-                FrontEnd.printPasswordError(out, true);
+                FrontEnd.printScreen03(out, param_auto, true);
             }
             else if(!param_p.equals(password)){
 
-                FrontEnd.printPasswordError(out, false);
+                FrontEnd.printScreen03(out, param_auto, false);
             }
             else{
                 //en función del parámetro phase se mostrará una pantalla u otra
@@ -73,7 +75,7 @@ public class Sint500P2 extends HttpServlet {
                     case "21" -> FrontEnd.printScreen21(out, param_p, param_auto, DataModel.getQ2Langs());
                     case "22" -> FrontEnd.printScreen22(out, param_p, param_auto, param_lang, DataModel.getQ2Songs(param_lang));
                     case "23" -> FrontEnd.printScreen23(out, param_p, param_auto, param_lang, param_sid, DataModel.getQ2Albums(param_lang, param_sid));
-                    default -> FrontEnd.printEmpty(out);
+                    default -> FrontEnd.printEmpty(out, param_p, param_auto);
                 }
             }            
 
