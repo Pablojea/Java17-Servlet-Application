@@ -5,7 +5,101 @@ import java.util.ArrayList;
 
 public abstract class FrontEnd {
 
+    static String style = """
+    <style>
+
+        * {
+
+            margin: 0px;
+            padding: 0px;
+
+        }
+
+        body {
+
+            margin: 10px;
+            padding: 10px;            
+            font-family: Arial, Helvetica, sans-serif;         
+            background-color: antiquewhite;
+
+        }        
+
+        h1 {
+
+            color: #333;
+            padding-bottom: 40px;
+            font-size: 40px;
+
+        }
+
+        h2 {
+
+            color: #333;
+            padding-bottom: 20px;
+            font-size: 30px;
+
+        }
+
+        h3 {
+
+            color: #333;
+            padding-bottom: 20px;
+            font-size: 25px;
+
+        }
+
+        ol {            
+            padding-left: 40px; 
+            padding-right: 0px;           
+        }   
+
+        ol li {
+            
+            color: #333;            
+            font-size: 20px;
+            padding-left: 20px;
+        }
+
+        ul {
+
+            list-style: none;
+
+        }
+
+        ul li {
+
+            color: #3541ea;            
+            font-size: 20px;
+            padding-left: 20px;
+            padding-bottom: 20px;
+
+        }
+
+        ol li a {
+
+            color: #3541ea;  
+
+        }
+
+        p {
+
+            color: #3541ea; 
+            font-size: 20px;
+
+        }
+
+        .resultado li{
+
+            color: green;
+
+        }
+
+    </style>
+    """;
+
     static void printScreen01(PrintWriter out, String p, String auto){
+
+        System.out.println(style);
 
         if(auto.equals("true")){
 
@@ -23,12 +117,17 @@ public abstract class FrontEnd {
             out.println("<html lang='es'>");
             out.println("<html>");
             out.println("<head>");
+            out.println(style);
             out.println("<title> Sint500P2 </title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Screen 01</h1>");
-            out.println("<p><a style='text-decoration: none' href='?pphase=02&p="+ p + "&auto=" + auto + "'>Ver los ficheros erroneos</a><p>");
-            out.println("<p><a style='text-decoration: none' href='?pphase=21&p="+ p + "&auto=" + auto + "'>Consulta2: álbumes de una compañia con canciones en un idioma.</a><p>");
+            out.println("<h1>Servicio de consulta de información musical</h1>");  
+            out.println("<h2>Bienvenido a este servicio</h2>"); 
+            out.println("<h3>Selecciona una consulta:</h3>");
+            out.println("<ul>");
+            out.println("<li><a style='text-decoration: none' href='?pphase=02&p="+ p + "&auto=" + auto + "'>Ver los ficheros erroneos</a></li>");
+            out.println("<li><a style='text-decoration: none' href='?pphase=21&p="+ p + "&auto=" + auto + "'>Consulta2: álbumes de una compañia con canciones en un idioma.</a></li>");
+            out.println("</ul>");
             out.println("</body>");
             out.println("</html>");
 
@@ -61,10 +160,18 @@ public abstract class FrontEnd {
             out.println("<html lang='es'>");
             out.println("<html>");
             out.println("<head>");
+            out.println(style);
             out.println("<title> Sint500P2 </title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Screen 02</h1>");
+            out.println("<h1>Servicio de consulta de información musical</h1>"); 
+
+            out.println("<h2>Ficheros con warnings:</h2>");
+
+            out.println("<h2>Ficheros con errores:</h2>"); 
+
+            out.println("<h2>Ficheeros con errores fatales:</h2>");  
+
             out.println("<p><a style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Atrás</a><p>");        
             out.println("</body>");
             out.println("</html>");
@@ -98,7 +205,8 @@ public abstract class FrontEnd {
             out.println("<!DOCTYPE html>");
             out.println("<html lang='es'>");       
             out.println("<html>");
-            out.println("<head>");
+            out.println("<head>"); 
+            out.println(style);           
             out.println("<title> Sint500P2 </title>");
             out.println("</head>");
             out.println("<body>");
@@ -138,17 +246,20 @@ public abstract class FrontEnd {
             out.println("<html lang='es'>");
             out.println("<html>");
             out.println("<head>");
+            out.println(style);
             out.println("<title> Sint500P2 </title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Screen 21</h1>");  
-            out.println("<ul style='list-style-type:none'>");
+            out.println("<h1>Servicio de consulta de información musical</h1>");  
+            out.println("<h2>Consulta 2: Fase 1</h2>"); 
+            out.println("<h3>Selecciona un idioma:</h3>"); 
+            out.println("<ol>");
 
             for(String lang: langs){                      
                 out.println("<li><a style='text-decoration: none' href='?pphase=22&p="+ p + "&auto=" + auto + "&plang=" + lang + "'" + ">"+ lang + "</a> </li>");                    
             } 
 
-            out.println("</ul>");    
+            out.println("</ol>");    
             out.println("<p><a style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Inicio</a><p>");
             out.println("</body>");
             out.println("</html>");
@@ -176,16 +287,19 @@ public abstract class FrontEnd {
             out.println("<html lang='es'>");
             out.println("<html>");
             out.println("<head>");
+            out.println(style);
             out.println("<title> Sint500P2 </title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Screen 22</h1>");
+            out.println("<h1>Servicio de consulta de información musical</h1>");  
+            out.println("<h2>Consulta 2: Fase 2</h2>"); 
+            out.println("<h3>Selecciona una canción:</h3>"); 
             out.println("<ol>");
 
             for(Song song: songs){      
 
                 String songInfo =" --- " +"Álbum = null --- Duración = " + song.getDuration() + " --- Géneros = " + song.getGenres();              
-                out.println("<li><a style='text-decoration: none' href='?pphase=23&p=" + p + "&auto=" + auto +"&plang=" + lang + "&psid=" + song.getSid() + "'"+">"+ "  " + song.getTitle() + "</a>" + songInfo+ "</li>");                    
+                out.println("<li><a style='text-decoration: none' href='?pphase=23&p=" + p + "&auto=" + auto +"&plang=" + lang + "&psid=" + song.getSid() + "'"+">" + song.getTitle() + "</a>" + songInfo + "</li>");                    
             }
 
             out.println("</ol>");
@@ -219,11 +333,14 @@ public abstract class FrontEnd {
             out.println("<html lang='es'>");
             out.println("<html>");
             out.println("<head>");
+            out.println(style);
             out.println("<title> Sint500P2 </title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Screen 23</h1>");  
-            out.println("<ol>");
+            out.println("<h1>Servicio de consulta de información musical</h1>");  
+            out.println("<h2>Consulta 2: Fase 3</h2>"); 
+            out.println("<h3>Este es el resultado de la consulta:</h3>"); 
+            out.println("<ol class='resultado'>");
 
             for(Album album: albums){      
 
@@ -251,6 +368,7 @@ public abstract class FrontEnd {
             out.println("<html lang='es'>");       
             out.println("<html>");
             out.println("<head>");
+            out.println(style);
             out.println("<title> Sint500P2 </title>");
             out.println("</head>");
             out.println("<body>");
