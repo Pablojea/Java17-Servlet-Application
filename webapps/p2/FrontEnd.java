@@ -50,7 +50,8 @@ public abstract class FrontEnd {
 
         ol {            
             padding-left: 40px; 
-            padding-right: 0px;           
+            padding-right: 0px;  
+            padding-bottom: 40px;         
         }   
 
         ol li {
@@ -93,6 +94,92 @@ public abstract class FrontEnd {
             color: green;
 
         }
+
+        .btn_ini {
+            background: #3D94F6;
+            background-image: -webkit-linear-gradient(top, #3D94F6, #1E62D0);
+            background-image: -moz-linear-gradient(top, #3D94F6, #1E62D0);
+            background-image: -ms-linear-gradient(top, #3D94F6, #1E62D0);
+            background-image: -o-linear-gradient(top, #3D94F6, #1E62D0);
+            background-image: -webkit-gradient(to bottom, #3D94F6, #1E62D0);
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            height: 12px;
+            margin-left: 40px;
+            margin-right: 10px;
+            line-height: 12px;
+            color: #FFFFFF;
+            width: 60px;
+            font-size: 20px;
+            font-weight: 100;
+            padding: 15px;
+            -webkit-box-shadow: 1px 1px 20px 0 #000000;
+            -moz-box-shadow: 1px 1px 20px 0 #000000;
+            box-shadow: 1px 1px 20px 0 #000000;
+            text-shadow: 1px 1px 20px #000000;
+            border: solid #337FED 1px;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            text-align: center;
+            }
+
+        .btn_ini:hover {
+            border: solid #337FED 1px;
+            background: #1E62D0;
+            background-image: -webkit-linear-gradient(top, #1E62D0, #3D94F6);
+            background-image: -moz-linear-gradient(top, #1E62D0, #3D94F6);
+            background-image: -ms-linear-gradient(top, #1E62D0, #3D94F6);
+            background-image: -o-linear-gradient(top, #1E62D0, #3D94F6);
+            background-image: -webkit-gradient(to bottom, #1E62D0, #3D94F6);
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            }
+
+        .btn_atr {
+            background: #FA0606;
+            background-image: -webkit-linear-gradient(top, #FA0606, #905B5B);
+            background-image: -moz-linear-gradient(top, #FA0606, #905B5B);
+            background-image: -ms-linear-gradient(top, #FA0606, #905B5B);
+            background-image: -o-linear-gradient(top, #FA0606, #905B5B);
+            background-image: -webkit-gradient(to bottom, #FA0606, #905B5B);
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            height: 12px;
+            line-height: 12px;
+            color: #FFFFFF;
+            width: 60px;
+            font-size: 20px;
+            font-weight: 100;
+            padding: 15px;
+            -webkit-box-shadow: 1px 1px 20px 0 #000000;
+            -moz-box-shadow: 1px 1px 20px 0 #000000;
+            box-shadow: 1px 1px 20px 0 #000000;
+            text-shadow: 1px 1px 20px #000000;
+            border: solid #DD380D 1px;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            text-align: center;
+            }
+
+        .btn_atr:hover {
+            border: solid #337FED 1px;
+            background: #C32626;
+            background-image: -webkit-linear-gradient(top, #C32626, #804343);
+            background-image: -moz-linear-gradient(top, #C32626, #804343);
+            background-image: -ms-linear-gradient(top, #C32626, #804343);
+            background-image: -o-linear-gradient(top, #C32626, #804343);
+            background-image: -webkit-gradient(to bottom, #C32626, #804343);
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            }
 
     </style>
     """;
@@ -170,9 +257,9 @@ public abstract class FrontEnd {
 
             out.println("<h2>Ficheros con errores:</h2>"); 
 
-            out.println("<h2>Ficheros con errores fatales:</h2>");  
+            out.println("<h2>Ficheeros con errores fatales:</h2>");  
 
-            out.println("<p><a style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Atrás</a><p>");        
+            out.println("<a class='btn_ini' style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Atrás</a>");        
             out.println("</body>");
             out.println("</html>");
         }
@@ -217,7 +304,8 @@ public abstract class FrontEnd {
             else{
                 out.println("<h1> PARÁMETRO P INCORRECTO </h1>");
             }
-            
+
+            out.println("<a class='btn_ini' style='text-decoration: none' href='?pphase=01'> Inicio </a>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -259,17 +347,7 @@ public abstract class FrontEnd {
             } 
 
             out.println("</ol>");    
-
-            out.println(String.format("""
-            <form name='botonInicio'>
-                <input type='hidden' name='pphase' value='01'>
-                <input type='hidden' name='p' value='%s'>
-                <input type='hidden' name='auto' value='false'>
-                <input type='submit' value='Inicio'>
-            </form>
-            """,
-            p));
-
+            out.println("<a class='btn_ini' style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Inicio</a>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -312,28 +390,8 @@ public abstract class FrontEnd {
             }
 
             out.println("</ol>");
-
-
-            out.println(String.format("""
-            <form name='botonInicio'>
-                <input type='hidden' name='pphase' value='01'>
-                <input type='hidden' name='p' value='%s'>
-                <input type='hidden' name='auto' value='false'>
-                <input type='submit' value='Inicio'>
-            </form>
-            """,
-            p));
-
-            out.println(String.format("""
-            <form name='botonAtras'>
-                <input type='hidden' name='pphase' value='21'>
-                <input type='hidden' name='p' value='%s'>
-                <input type='hidden' name='auto' value='false'>
-                <input type='submit' value='Atrás'>
-            </form>
-            """,
-            p));
-
+            out.println("<a class='btn_ini' style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Inicio</a>");
+            out.println("<a class='btn_atr' style='text-decoration: none' href='?pphase=21&p=" + p + "&auto=" + auto + "'>Atrás</a>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -379,28 +437,8 @@ public abstract class FrontEnd {
             }
 
             out.println("</ol>");  
-                                
-            out.println(String.format("""
-            <form name='botonInicio'>
-                <input type='hidden' name='pphase' value='01'>
-                <input type='hidden' name='p' value='%s'>
-                <input type='hidden' name='auto' value='false'>
-                <input type='submit' value='Inicio'>
-            </form>
-            """,
-            p));
-
-            out.println(String.format("""
-            <form name='botonAtras'>
-                <input type='hidden' name='pphase' value='22'>
-                <input type='hidden' name='p' value='%s'>
-                <input type='hidden' name='auto' value='false'>
-                <input type='hidden' name='plang' value='%s'>
-                <input type='submit' value='Atrás'>
-            </form>
-            """,
-            p,lang));
-            
+            out.println("<a class='btn_ini' style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Inicio</a>");
+            out.println("<a class='btn_atr' style='text-decoration: none' href='?pphase=22&p=" + p + "&auto=" + auto +"&plang=" + lang + "'>Atrás</a>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -422,8 +460,8 @@ public abstract class FrontEnd {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1> EMPY ATM </h1>");
-            out.println("<p><a style='text-decoration: none' href='?pphase=01'> Inicio </a><p>");
-            out.println("<p><a style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Inicio</a><p>");
+            out.println("<p><a class='btn_ini' style='text-decoration: none' href='?pphase=01'> Inicio </a><p>");
+            out.println("<p><a class='btn_ini' style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Inicio</a><p>");
             out.println("</body>");
             out.println("</html>");
         }
