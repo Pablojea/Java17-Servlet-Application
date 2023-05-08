@@ -170,7 +170,7 @@ public abstract class FrontEnd {
 
             out.println("<h2>Ficheros con errores:</h2>"); 
 
-            out.println("<h2>Ficheeros con errores fatales:</h2>");  
+            out.println("<h2>Ficheros con errores fatales:</h2>");  
 
             out.println("<p><a style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Atrás</a><p>");        
             out.println("</body>");
@@ -217,8 +217,7 @@ public abstract class FrontEnd {
             else{
                 out.println("<h1> PARÁMETRO P INCORRECTO </h1>");
             }
-
-            out.println("<p><a style='text-decoration: none' href='?pphase=01'> Inicio </a><p>");
+            
             out.println("</body>");
             out.println("</html>");
         }
@@ -260,7 +259,17 @@ public abstract class FrontEnd {
             } 
 
             out.println("</ol>");    
-            out.println("<p><a style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Inicio</a><p>");
+
+            out.println(String.format("""
+            <form name='botonInicio'>
+                <input type='hidden' name='pphase' value='01'>
+                <input type='hidden' name='p' value='%s'>
+                <input type='hidden' name='auto' value='false'>
+                <input type='submit' value='Inicio'>
+            </form>
+            """,
+            p));
+
             out.println("</body>");
             out.println("</html>");
         }
@@ -303,8 +312,28 @@ public abstract class FrontEnd {
             }
 
             out.println("</ol>");
-            out.println("<p><a style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Inicio</a><p>");
-            out.println("<p><a style='text-decoration: none' href='?pphase=21&p=" + p + "&auto=" + auto + "'>Atrás</a></p>");
+
+
+            out.println(String.format("""
+            <form name='botonInicio'>
+                <input type='hidden' name='pphase' value='01'>
+                <input type='hidden' name='p' value='%s'>
+                <input type='hidden' name='auto' value='false'>
+                <input type='submit' value='Inicio'>
+            </form>
+            """,
+            p));
+
+            out.println(String.format("""
+            <form name='botonAtras'>
+                <input type='hidden' name='pphase' value='21'>
+                <input type='hidden' name='p' value='%s'>
+                <input type='hidden' name='auto' value='false'>
+                <input type='submit' value='Atrás'>
+            </form>
+            """,
+            p));
+
             out.println("</body>");
             out.println("</html>");
         }
@@ -350,8 +379,28 @@ public abstract class FrontEnd {
             }
 
             out.println("</ol>");  
-            out.println("<p><a style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Inicio</a><p>");
-            out.println("<p><a style='text-decoration: none' href='?pphase=22&p=" + p + "&auto=" + auto +"&plang=" + lang + "'>Atrás</a><p>");
+                                
+            out.println(String.format("""
+            <form name='botonInicio'>
+                <input type='hidden' name='pphase' value='01'>
+                <input type='hidden' name='p' value='%s'>
+                <input type='hidden' name='auto' value='false'>
+                <input type='submit' value='Inicio'>
+            </form>
+            """,
+            p));
+
+            out.println(String.format("""
+            <form name='botonAtras'>
+                <input type='hidden' name='pphase' value='22'>
+                <input type='hidden' name='p' value='%s'>
+                <input type='hidden' name='auto' value='false'>
+                <input type='hidden' name='plang' value='%s'>
+                <input type='submit' value='Atrás'>
+            </form>
+            """,
+            p,lang));
+            
             out.println("</body>");
             out.println("</html>");
         }
