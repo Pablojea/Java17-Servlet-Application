@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public abstract class DataModel {
 
+    static void leerFicheros(){
+        
+    }
+
 
     // ahora mismo se crean manualmente varios idiomas para poder mostrar algo en la primera pantalla
     static ArrayList<String> getQ2Langs(){

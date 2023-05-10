@@ -76,6 +76,12 @@ public abstract class FrontEnd {
 
         }
 
+        ul li a {
+
+            color: #3541ea;  
+
+        }
+
         ol li a {
 
             color: #3541ea;  
@@ -96,6 +102,7 @@ public abstract class FrontEnd {
         }
 
         .btn_ini {
+
             background: #3D94F6;
             background-image: -webkit-linear-gradient(top, #3D94F6, #1E62D0);
             background-image: -moz-linear-gradient(top, #3D94F6, #1E62D0);
@@ -123,9 +130,11 @@ public abstract class FrontEnd {
             display: inline-block;
             cursor: pointer;
             text-align: center;
-            }
+
+        }
 
         .btn_ini:hover {
+
             border: solid #337FED 1px;
             background: #1E62D0;
             background-image: -webkit-linear-gradient(top, #1E62D0, #3D94F6);
@@ -137,9 +146,11 @@ public abstract class FrontEnd {
             -moz-border-radius: 20px;
             border-radius: 20px;
             text-decoration: none;
-            }
+
+        }
 
         .btn_atr {
+
             background: #FA0606;
             background-image: -webkit-linear-gradient(top, #FA0606, #905B5B);
             background-image: -moz-linear-gradient(top, #FA0606, #905B5B);
@@ -165,9 +176,11 @@ public abstract class FrontEnd {
             display: inline-block;
             cursor: pointer;
             text-align: center;
-            }
+
+        }
 
         .btn_atr:hover {
+
             border: solid #337FED 1px;
             background: #C32626;
             background-image: -webkit-linear-gradient(top, #C32626, #804343);
@@ -179,7 +192,20 @@ public abstract class FrontEnd {
             -moz-border-radius: 20px;
             border-radius: 20px;
             text-decoration: none;
-            }
+
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+        }
+
+        hr {
+            
+            padding: 50px 0;
+            border: none;
+
+        }
 
     </style>
     """;
@@ -212,8 +238,8 @@ public abstract class FrontEnd {
             out.println("<h2>Bienvenido a este servicio</h2>"); 
             out.println("<h3>Selecciona una consulta:</h3>");
             out.println("<ul>");
+            out.println("<li><a style='text-decoration: none' href='?pphase=21&p="+ p + "&auto=" + auto + "'>Consulta 2: Álbumes de una compañia con canciones en un idioma.</a></li>");
             out.println("<li><a style='text-decoration: none' href='?pphase=02&p="+ p + "&auto=" + auto + "'>Ver los ficheros erroneos</a></li>");
-            out.println("<li><a style='text-decoration: none' href='?pphase=21&p="+ p + "&auto=" + auto + "'>Consulta2: álbumes de una compañia con canciones en un idioma.</a></li>");
             out.println("</ul>");
             out.println("</body>");
             out.println("</html>");
@@ -257,7 +283,7 @@ public abstract class FrontEnd {
 
             out.println("<h2>Ficheros con errores:</h2>"); 
 
-            out.println("<h2>Ficheeros con errores fatales:</h2>");  
+            out.println("<h2>Ficheros con errores fatales:</h2>");  
 
             out.println("<a class='btn_ini' style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Atrás</a>");        
             out.println("</body>");
@@ -392,7 +418,14 @@ public abstract class FrontEnd {
             out.println("</ol>");
             out.println("<a class='btn_ini' style='text-decoration: none' href='?pphase=01&p=" + p + "&auto=" + auto + "'>Inicio</a>");
             out.println("<a class='btn_atr' style='text-decoration: none' href='?pphase=21&p=" + p + "&auto=" + auto + "'>Atrás</a>");
-            out.println("</body>");
+            out.println("""
+            <footer>
+                <hr>
+                <p>Author: Pablojea</p>
+            </footer>
+            """
+            );
+            out.println("</body>");            
             out.println("</html>");
         }
     }

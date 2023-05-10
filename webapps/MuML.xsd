@@ -6,7 +6,7 @@
         <xs:complexType>
             <xs:sequence>
 
-                <xs:element name="Year">
+                <xs:element name="Year" minOccurs="1" maxOccurs="1">
                     <xs:simpleType>
                         <xs:restriction base="xs:integer">
                             <xs:minInclusive value="1980"/>
@@ -15,7 +15,7 @@
                     </xs:simpleType>
                 </xs:element>
 
-                <xs:element name="Album" type="albumType"  minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="Album" type="albumType"  minOccurs="1" maxOccurs="unbounded"/>
 
             </xs:sequence>
         </xs:complexType>
@@ -25,51 +25,61 @@
     <xs:complexType name="albumType">
         <xs:sequence>
 
-            <xs:element name="Name" type="xs:string"/>
-            <xs:element name="Country" type="xs:string"/>
+            <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Country" type="xs:string" minOccurs="1" maxOccurs="1"/>
             <xs:choice>
                 <xs:element name="Singer" type="xs:string"/>
                 <xs:element name="Group" type="xs:string"/>
             </xs:choice>
-            <xs:element name="ISBN">
+            <xs:element name="ISBN" minOccurs="1" maxOccurs="1">
                 <xs:simpleType>         
                     <xs:restriction base="xs:string">
                         <xs:pattern value="\d{13}"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="Company" type="xs:string"/>
-            <xs:element name="Song" type="songType" minOccurs="0" maxOccurs="unbounded"/>
-
-            
+            <xs:element name="Company" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Song" type="songType" minOccurs="1" maxOccurs="unbounded"/>            
 
         </xs:sequence>
 
-        <xs:attribute name="aid" type="xs:string"/>   
-         
-
-        <xs:attribute name="format">
-            <xs:simpleType>
-                <xs:restriction base="xs:string">
-                    <xs:enumeration value="st"/>
-                    <xs:enumeration value="pd"/>
-                    <xs:enumeration value="cd"/>
-                    <xs:enumeration value="vd"/>
-                    <xs:enumeration value="cs"/>
-                </xs:restriction>
-            </xs:simpleType>
-        </xs:attribute>
+        <xs:attribute name="aid" type="xs:string" use="required"/>   
+        <xs:attribute name="format" type="xs:string"/>
 
     </xs:complexType>
 
     <xs:complexType name="songType">
         <xs:sequence>
             <xs:element name="Title" type="xs:string"/>
-            <xs:element name="Duration" type="xs:integer"/>
+            <xs:element name="Duration" minOccurs="1" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                            <xs:minInclusive value="120"/>
+                            <xs:maxInclusive value="500"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+            </xs:element>
             <xs:element name="Genre" type="genreType" minOccurs="1" maxOccurs="5"/>
-            <xs:element name="Composer" type="xs:string"/>
-            <xs:element name="MuML" type="xs:string"/>
+            <xs:element name="Composer" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="MuML" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
+
+        <xs:attribute name="sid" use="required"> 
+            <xs:simpleType>         
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[A-z]{3}\d{3}"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+        <xs:attribute name="lang" use="required"> 
+            <xs:simpleType>         
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[A-z]{2}"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
     </xs:complexType>
 
     <xs:simpleType name="genreType">
