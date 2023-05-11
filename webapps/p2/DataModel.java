@@ -1,11 +1,65 @@
 package p2;
 
 import java.util.ArrayList;
+import javax.xml.parsers.*;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Element;
+import java.io.IOException;
+import java.io.File;
 
-public abstract class DataModel {
 
-    static void leerFicheros(){
-        
+
+
+public class DataModel {
+
+    String urlInicial;
+    DocumentBuilderFactory dbf;
+    DocumentBuilder db;    
+    ArrayList<String> urlVisitados;
+    ArrayList<String> urls;
+    ArrayList<Album> albumes;
+
+    public DataModel(String rutaServlet, String urlInicial) throws ParserConfigurationException, SAXException, IOException{
+
+        this.urlInicial = urlInicial;
+        urls = new ArrayList<String>();
+        urls.add(this.urlInicial);
+        urlVisitados = new ArrayList<String>();        
+        urlVisitados = new ArrayList<String>();
+        albumes = new ArrayList<Album>();	
+
+        String JAXP_SCHEMA_LANGUAGE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
+	    String W3C_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
+	    String JAXP_SCHEMA_SOURCE = "http://java.sun.com/xml/jaxp/properties/schemaSource";	    
+        File mumlSchema = new File (rutaServlet + "MuML.xsd");        
+
+        dbf = DocumentBuilderFactory.newInstance();
+        dbf.setValidating(true);
+		dbf.setNamespaceAware(true);
+		dbf.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);        
+		dbf.setAttribute(JAXP_SCHEMA_SOURCE, mumlSchema); 
+
+        System.out.println("Datamodel creado con éxito");
+        //System.out.println(doc.getDocumentElement().getTextContent());
+
+    }
+
+    void leerFicheros(){
+
+        try{
+            Document doc = db.parse(urlInicial);
+            
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 

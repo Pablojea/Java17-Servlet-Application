@@ -201,7 +201,7 @@ public abstract class FrontEnd {
         }
 
         hr {
-            
+
             padding: 50px 0;
             border: none;
 
@@ -210,9 +210,7 @@ public abstract class FrontEnd {
     </style>
     """;
 
-    static void printScreen01(PrintWriter out, String p, String auto){
-
-        System.out.println(style);
+    static void printScreen01(PrintWriter out, String p, String auto){        
 
         if(auto.equals("true")){
 
