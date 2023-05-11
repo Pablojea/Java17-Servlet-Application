@@ -9,11 +9,28 @@ import java.util.ArrayList;
 public class Sint500P2 extends HttpServlet {
 
     String password;
+    DataModel dm;
 
     // este método se ejecuta una única vez al arrancar el tomcat
     public void init(){   
 
         password = "1234";
+
+        String rutaServlet = getServletContext().getRealPath("/");
+        String urlInicial = "http://alberto.gil.webs.uvigo.es/SINT/22-23/muml2001.xml";
+        //System.out.println("Intento de path:    " + ruta);
+
+        try{
+
+            dm = new DataModel(rutaServlet, urlInicial);
+
+        }
+        catch(Exception e){
+
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace(System.out);
+        }
+
         // esta linea sólo sirve para separar visiblemente las distintas ejecuciones en catalina.out
         System.out.println("-".repeat(100));
 
