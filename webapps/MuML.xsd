@@ -22,7 +22,7 @@
 
     </xs:element>
 
-    <xs:complexType name="albumType">
+    <xs:complexType mixed="true" name="albumType">
         <xs:sequence>
 
             <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>

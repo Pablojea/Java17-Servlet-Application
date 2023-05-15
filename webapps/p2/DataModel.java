@@ -13,26 +13,17 @@ import org.w3c.dom.Element;
 import java.io.IOException;
 import java.io.File;
 
-
-
-
 public class DataModel {
 
     String urlInicial;
+    ArrayList<String> urls; //Contiene las urls de los ficheros válidos (well-formed) 
     DocumentBuilderFactory dbf;
-    DocumentBuilder db;    
-    ArrayList<String> urlVisitados;
-    ArrayList<String> urls;
-    ArrayList<Album> albumes;
+    DocumentBuilder db;         
 
     public DataModel(String rutaServlet, String urlInicial) throws ParserConfigurationException, SAXException, IOException{
 
         this.urlInicial = urlInicial;
-        urls = new ArrayList<String>();
-        urls.add(this.urlInicial);
-        urlVisitados = new ArrayList<String>();        
-        urlVisitados = new ArrayList<String>();
-        albumes = new ArrayList<Album>();	
+        urls = new ArrayList<String>();  
 
         String JAXP_SCHEMA_LANGUAGE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
 	    String W3C_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
@@ -44,23 +35,82 @@ public class DataModel {
 		dbf.setNamespaceAware(true);
 		dbf.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);        
 		dbf.setAttribute(JAXP_SCHEMA_SOURCE, mumlSchema); 
+        db = dbf.newDocumentBuilder();
 
-        System.out.println("Datamodel creado con éxito");
-        //System.out.println(doc.getDocumentElement().getTextContent());
+        System.out.println("\nDatamodel creado con éxito\n");        
 
     }
 
-    void leerFicheros(){
+    void leerFicheros(){    
+        
+        // rellena el arraylist de urls well-formed a parsear
+        obtenerUrls(urlInicial);
 
+        // parsea los ficheros y almacena sus datos
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+
+        for(String file: urls){
+
+            System.out.println(file);
+
+        }
+
+    }
+
+    // Obtiene de forma recursiva una lista de todos los urls de archivos well-formed  
+    void obtenerUrls(String url){      
+         
+        // guarda el prefijo de la url actual para crear futuras url
+        int lastSlash = url.lastIndexOf("/");
+        String prefijoInicial = url.substring(0, lastSlash + 1);     
+
+        // Si el archivo es well-formed obtiene sus elementos MuML (otras urls)     
         try{
-            Document doc = db.parse(urlInicial);
-            
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
 
+            System.out.println("Parseando " + url);
+            Document doc = db.parse(url);
+            System.out.println(url + ": WELL-FORMED");
+            
+            if(!urls.contains(url)){
+
+                urls.add(url);
+            }
+            
+            NodeList nlMuml = doc.getElementsByTagName("MuML");
+
+            for(int mumlUrl = 0; mumlUrl < nlMuml.getLength(); mumlUrl++){
+
+                Element eleMuml = (Element)nlMuml.item(mumlUrl); 
+                String newUrl = eleMuml.getTextContent().indexOf("http") < 0 ? prefijoInicial + eleMuml.getTextContent() : eleMuml.getTextContent();
+                
+                if(!urls.contains(newUrl)){ 
+
+                    obtenerUrls(newUrl);
+
+                }            
+            }
+        }
+        catch(SAXException se) {
+
+            System.out.println(url + ":NO WELL-FORMED");  
+            return;          
+            //se.printStackTrace();
+        }
+        catch(IOException ioe){
+
+            ioe.printStackTrace();
+
+        }       
+        
     }
+
+
+
+
+
+
 
 
     // ahora mismo se crean manualmente varios idiomas para poder mostrar algo en la primera pantalla

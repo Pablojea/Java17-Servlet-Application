@@ -12,17 +12,15 @@ public class Sint500P2 extends HttpServlet {
     DataModel dm;
 
     // este método se ejecuta una única vez al arrancar el tomcat
-    public void init(){   
-
-        password = "1234";
-
-        String rutaServlet = getServletContext().getRealPath("/");
-        String urlInicial = "http://alberto.gil.webs.uvigo.es/SINT/22-23/muml2001.xml";
-        //System.out.println("Intento de path:    " + ruta);
+    public void init(){        
 
         try{
 
-            dm = new DataModel(rutaServlet, urlInicial);
+            password = "1234";
+            String rutaServlet = getServletContext().getRealPath("/");
+            String urlInicial = "http://alberto.gil.webs.uvigo.es/SINT/22-23/muml2001.xml";  
+            dm = new DataModel(rutaServlet, urlInicial);             
+            dm.leerFicheros();
 
         }
         catch(Exception e){
