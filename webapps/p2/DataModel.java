@@ -36,6 +36,7 @@ public class DataModel {
 		dbf.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);        
 		dbf.setAttribute(JAXP_SCHEMA_SOURCE, mumlSchema); 
         db = dbf.newDocumentBuilder();
+        db.setErrorHandler(new ErrorHandler());
 
         System.out.println("\nDatamodel creado con éxito\n");        
 
@@ -70,39 +71,51 @@ public class DataModel {
         try{
 
             System.out.println("Parseando " + url);
-            Document doc = db.parse(url);
-            System.out.println(url + ": WELL-FORMED");
-            
-            if(!urls.contains(url)){
+            Document doc = db.parse(url);            
 
-                urls.add(url);
+            // comprobamos si contiene errores
+            if(ErrorHandler.getError() != 0){
+
+                System.out.println("El fichero " + url + " contiene errores del tipo: " + ErrorHandler.getError());
+                ErrorHandler.cleanErrors();                
+
             }
-            
-            NodeList nlMuml = doc.getElementsByTagName("MuML");
+            else{
 
-            for(int mumlUrl = 0; mumlUrl < nlMuml.getLength(); mumlUrl++){
+                System.out.println("----- ARCHIVO OK -----");
 
-                Element eleMuml = (Element)nlMuml.item(mumlUrl); 
-                String newUrl = eleMuml.getTextContent().indexOf("http") < 0 ? prefijoInicial + eleMuml.getTextContent() : eleMuml.getTextContent();
+                if(!urls.contains(url)){
                 
-                if(!urls.contains(newUrl)){ 
+                    urls.add(url);
 
-                    obtenerUrls(newUrl);
+                }
+            
+                NodeList nlMuml = doc.getElementsByTagName("MuML");
 
-                }            
-            }
+                for(int mumlUrl = 0; mumlUrl < nlMuml.getLength(); mumlUrl++){
+
+                    Element eleMuml = (Element)nlMuml.item(mumlUrl); 
+                    String newUrl = eleMuml.getTextContent().indexOf("http") < 0 ? prefijoInicial + eleMuml.getTextContent() : eleMuml.getTextContent();
+                    
+                    if(!urls.contains(newUrl)){ 
+
+                        obtenerUrls(newUrl);
+
+                    }            
+                }
+            }     
         }
         catch(SAXException se) {
 
-            System.out.println(url + ":NO WELL-FORMED");  
+            System.out.println("----- NO WELL-FORMED:   " + url + "     -----");             
             return;          
-            //se.printStackTrace();
+            
         }
         catch(IOException ioe){
 
             ioe.printStackTrace();
 
-        }       
+        }      
         
     }
 

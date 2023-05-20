@@ -39,7 +39,8 @@
                 </xs:simpleType>
             </xs:element>
             <xs:element name="Company" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="Song" type="songType" minOccurs="1" maxOccurs="unbounded"/>            
+            <xs:element name="Song" type="songType" minOccurs="1" maxOccurs="unbounded"/>  
+            <xs:element name="Recording" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>           
 
         </xs:sequence>
 
@@ -55,7 +56,7 @@
                     <xs:simpleType>
                         <xs:restriction base="xs:integer">
                             <xs:minInclusive value="120"/>
-                            <xs:maxInclusive value="500"/>
+                            <xs:maxInclusive value="600"/>
                         </xs:restriction>
                     </xs:simpleType>
             </xs:element>
