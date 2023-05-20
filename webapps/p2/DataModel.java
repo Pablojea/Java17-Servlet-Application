@@ -88,6 +88,10 @@ public class DataModel {
                 
                     urls.add(url);
 
+                    // buen sitio para leer los datos de los ficheros a usar
+                    obtenerDatos(doc);
+
+                    
                 }
             
                 NodeList nlMuml = doc.getElementsByTagName("MuML");
@@ -117,6 +121,37 @@ public class DataModel {
 
         }      
         
+    }
+
+
+    // recibe un Document con el contenido de un archivo xml. Leerá sus álbumes y canciones y los volcará en los ArrayLists
+    void obtenerDatos(Document archivo){   
+
+        NodeList nlYear =  archivo.getElementsByTagName("Year");  
+        Element eleYear = (Element)nlYear.item(0);
+
+        System.out.println("Año del archivo:    " + eleYear.getTextContent());
+        
+
+        NodeList nlAlbum = archivo.getElementsByTagName("Album");
+
+        for(int i = 0; i < nlAlbum.getLength(); i++){
+
+            System.out.println("\nLeyendo una ALBUM: \n\n");
+            Element eleAlbum = (Element)nlAlbum.item(i); 
+
+        }
+        
+
+        NodeList nlSong = archivo.getElementsByTagName("Song");
+
+        for(int i = 0; i < nlSong.getLength(); i++){
+
+            System.out.println("\nLeyendo una canción: \n\n");
+            Element eleSong = (Element)nlSong.item(i);       
+
+        }
+
     }
 
 
