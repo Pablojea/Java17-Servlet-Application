@@ -10,6 +10,7 @@ public class Song {
     private String composer;
     private ArrayList<String> mumls;
     private String sid;
+    private String album;
     private String lang;
 
     public Song(){
@@ -60,6 +61,14 @@ public class Song {
 
     String getLang(){
         return this.lang;
+    }
+
+    String getAlbum(){
+        return this.album;
+    }
+
+    void setAlbum(String album){
+        this.album = album;
     }
 
     void setTitle(String title){

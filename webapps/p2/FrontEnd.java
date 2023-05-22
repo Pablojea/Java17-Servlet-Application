@@ -386,7 +386,7 @@ public abstract class FrontEnd {
             <songs>""");
 
             for(Song song: songs){                      
-                out.println("<song album='null' duration='null' genres='null'>" + song.getTitle() + "</song>");                    
+                out.println("<song album='" + song.getAlbum() +  "' duration='" + song.getDuration() + "' genres='" + song.getGenres() + "'>" + song.getTitle() + "</song>");                    
             } 
 
             out.println("</songs>");
@@ -409,7 +409,7 @@ public abstract class FrontEnd {
 
             for(Song song: songs){      
 
-                String songInfo =" --- " +"Álbum = null --- Duración = " + song.getDuration() + " --- Géneros = " + song.getGenres();              
+                String songInfo =" --- " + "Álbum = " + song.getAlbum() + " --- Duración = " + song.getDuration() + " --- Géneros = " + song.getGenres();              
                 out.println("<li><a style='text-decoration: none' href='?pphase=23&p=" + p + "&auto=" + auto +"&plang=" + lang + "&psid=" + song.getSid() + "'"+">" + song.getTitle() + "</a>" + songInfo + "</li>");                    
             }
 

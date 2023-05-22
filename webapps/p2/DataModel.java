@@ -21,7 +21,7 @@ public class DataModel {
 
     String urlInicial;
     ArrayList<String> urls; //Contiene las urls de los ficheros válidos (well-formed) 
-    ArrayList<Album> albumes;
+    static ArrayList<Album> albumes;
     DocumentBuilderFactory dbf;
     DocumentBuilder db;    
     XPathFactory xpathFactory;   
@@ -237,6 +237,7 @@ public class DataModel {
                         temp3.item(w).getTextContent().trim()!=""){
                         
                         String review = temp3.item(w).getTextContent().trim();
+                        newAlbum.setReview(review);
                         System.out.println("    Review: " + review);
 
                         }
@@ -298,6 +299,8 @@ public class DataModel {
                 newSong.setComposer(composer);          
                 System.out.println("        Composer :   " + composer);
 
+                newSong.setAlbum(nombreAlbum);
+
                 newAlbum.addSong(newSong);
 
 
@@ -310,110 +313,72 @@ public class DataModel {
     }
 
 
-    // ahora mismo se crean manualmente varios idiomas para poder mostrar algo en la primera pantalla
+    // obtiene todos los langs que aparecen en los álbumes (sin repeticiones)
     static ArrayList<String> getQ2Langs(){
 
         ArrayList<String> langs = new ArrayList<>();
-        langs.add("es");
-        langs.add("en");
-        langs.add("fr");
-        langs.add("it");
-        langs.add("de");
-        langs.add("gl");
 
-        return langs;
+        for (Album album: albumes){
+
+            ArrayList<String> albumLangs = album.getAlbumLangs();
+
+            for(String lang: albumLangs){
+
+                if(!langs.contains(lang))
+                langs.add(lang);
+            }
+
+        }
+
+        return langs;     
 
     }
 
-    // en este momento see crean algunas canciones falsas para algunos de los idiomas creados
-    // de momento sólo contienen título, idioma, y sid, para poder continuar a la última pantalla
+    // Obtiene las canciones en un determinado idioma
     static ArrayList<Song> getQ2Songs(String lang){
 
-        ArrayList<Song> allSongs = new ArrayList<>();
+        ArrayList<Song> songs = new ArrayList<Song>();
 
-        for(int i = 0; i < 5; i++){
+        for(Album album: albumes){
 
-            Song newSong1 = new Song(
-                "song es" + i,
-                300,
-                null,
-                "Sawano",
-                null,
-                "es" + i,
-                "es"
-            );
+            for(Song song: album.getSongs()){
 
-            Song newSong2 = new Song(
-                "song en" +i,
-                300,
-                null,
-                "Sawano",
-                null,
-                "en" + i,
-                "en"
-            );
+                if(song.getLang().equals(lang))
+                songs.add(song);
 
-            allSongs.add(newSong1);
-            allSongs.add(newSong2);
-        }
-
-
-        ArrayList<Song> langSongs = new ArrayList<>();
-
-        for(Song song: allSongs){
-
-            if(song.getLang().equals(lang)){
-                langSongs.add(song);
             }
-            
         }
 
-        return langSongs;
+        return songs;
+        
     }
 
 
-
+    // obtiene los álbumes de una compañía con canciones en un determinado idioma
     static ArrayList<Album> getQ2Albums(String lang, String sid){
+       
+        String company = "";  
 
-        ArrayList<Album> albums = new ArrayList<>();
-        String tmpCompany ="";
+        for(Album album: albumes){
 
-
-        for(int i = 0; i < 10; i++){
-            albums.add(new Album("album sony "+i, "spain", "sony records", "buena wea"));
-        }
-
-        for(int i = 0; i < 10; i++){
-            albums.add(new Album("album jony "+i, "spain", "jony records", "bacano"));
-        }
-
-        for(int i = 0; i < 10; i++){
-            Album newAlbum =new Album("album honey "+i, "spain", "honey records", "buena wea");
-            newAlbum.addSong(new Song("megalocumbia", lang, sid));
-            albums.add(newAlbum);
-        }
-
-
-        for(Album album: albums){
-
-            if(album.hasSong(lang, sid)){
-                tmpCompany = album.getCompany();
+            if(album.hasSong(sid)){
+                company = album.getCompany();
                 break;
             }
-
         }
 
-        ArrayList<Album> songAlbums = new ArrayList<>();
+        ArrayList<Album> albumesCompanhia = new ArrayList<>();
 
-        for(Album album: albums){
+        for(Album album: albumes){
             
-            if(album.getCompany().equals(tmpCompany)){
-                songAlbums.add(album);
+            if(album.getCompany().equals(company) && album.hasSongLang(lang)){
+
+                albumesCompanhia.add(album);
+
             }
         }
 
-        return songAlbums;
-
+        return albumesCompanhia;
     }
 
 }

@@ -20,7 +20,7 @@ public class Album {
     public Album(){        
         
         this.songs = new ArrayList<Song>();
-        
+
     };
 
     public Album(String name, String country, String company, String review){
@@ -126,16 +126,44 @@ public class Album {
         songs.add(song);
     }
 
-    boolean hasSong(String lang, String sid){
+    boolean hasSong(String sid){
 
         for(Song song: songs){
 
-            if(lang.equals(song.getLang()) && sid.equals(song.getSid())){
+            if(sid.equals(song.getSid())){
                 return true;
             }
         }
 
         return false;
+    }
+
+    boolean hasSongLang(String lang){
+
+        for(Song song: songs){
+
+            if(lang.equals(song.getLang())){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    ArrayList<String> getAlbumLangs(){
+
+        ArrayList<String> langs = new ArrayList<String>();
+
+        for(Song song: songs){
+
+            if(!langs.contains(song.getLang()))
+            langs.add(song.getLang());
+
+        }
+
+        System.out.println(langs);
+        return langs;
+
     }
 
 
