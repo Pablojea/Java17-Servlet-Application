@@ -20,6 +20,7 @@ public class Album {
     public Album(){        
         
         this.songs = new ArrayList<Song>();
+        
     };
 
     public Album(String name, String country, String company, String review){
