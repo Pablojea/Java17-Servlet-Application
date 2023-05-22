@@ -21,6 +21,7 @@ public class DataModel {
 
     String urlInicial;
     ArrayList<String> urls; //Contiene las urls de los ficheros válidos (well-formed) 
+    ArrayList<Album> albumes;
     DocumentBuilderFactory dbf;
     DocumentBuilder db;    
     XPathFactory xpathFactory;   
@@ -30,6 +31,7 @@ public class DataModel {
 
         this.urlInicial = urlInicial;
         urls = new ArrayList<String>();  
+        albumes = new ArrayList<Album>();
 
         String JAXP_SCHEMA_LANGUAGE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
 	    String W3C_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
@@ -141,8 +143,9 @@ public class DataModel {
 
         // obtiene el año del fichero
         exp = "Music/Year";
-        temp = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);         
-        System.out.println("Año :   " + temp.item(0).getTextContent().trim()); 
+        temp = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);
+        String anho = temp.item(0).getTextContent().trim();   
+        System.out.println("Año :   " + anho); 
 
         
         // obtiene los álbumes del fichero
@@ -150,46 +153,73 @@ public class DataModel {
 
         for(int i = 0; i < nlAlbum.getLength(); i++){
 
+            Album newAlbum = new Album();
+            newAlbum.setYear(Integer.parseInt(anho));
+
             System.out.println("\nLeyendo un álbum: \n\n");
             Element eleAlbum = (Element)nlAlbum.item(i); 
 
             // obtiene el id del album
-            System.out.println("id de album =  " + eleAlbum.getAttribute("aid"));
+            String albumId = eleAlbum.getAttribute("aid");
+            newAlbum.setAid(albumId);
+            System.out.println("id de album =  " + albumId);
 
             // obtiene el formato del album
-            System.out.println("formatos del album =  " + eleAlbum.getAttribute("format"));
+            String formato = eleAlbum.getAttribute("format");
+            newAlbum.setFormats(formato);
+            System.out.println("formatos del album =  " + formato);
 
             // obtiene el nombre del album
             exp = "Music/Album[@aid='" + eleAlbum.getAttribute("aid") + "']/Name";
-            temp = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);         
-            System.out.println("Nombre :   " + temp.item(0).getTextContent().trim());
+            temp = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET); 
+            String nombreAlbum = temp.item(0).getTextContent().trim(); 
+            newAlbum.setName(nombreAlbum);     
+            System.out.println("Nombre :   " + nombreAlbum);
 
             // obtiene el pais del album
             exp = "Music/Album[@aid='" + eleAlbum.getAttribute("aid") + "']/Country";
-            temp = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);         
-            System.out.println("País :   " + temp.item(0).getTextContent().trim());
+            temp = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);  
+            String paisAlbum = temp.item(0).getTextContent().trim();    
+            newAlbum.setCountry(paisAlbum);
+            System.out.println("País :   " + paisAlbum);
 
             // obtiene el cantante/grupo del album
             exp = "Music/Album[@aid='" + eleAlbum.getAttribute("aid") + "']/Singer";
-            temp = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);  
-            if(temp.item(0) != null)       
-            System.out.println("Cantante :   " + temp.item(0).getTextContent().trim());
+            temp = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);
+            
+            if(temp.item(0) != null){ 
+
+                String cantante = temp.item(0).getTextContent().trim();
+                newAlbum.setSinger(cantante);   
+                System.out.println("Cantante :   " + cantante);
+
+            }
 
             exp = "Music/Album[@aid='" + eleAlbum.getAttribute("aid") + "']/Group";
             temp = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);
-            if(temp.item(0) != null)            
-            System.out.println("Grupo :   " + temp.item(0).getTextContent().trim());
+            if(temp.item(0) != null){
+                
+                String grupo = temp.item(0).getTextContent().trim();
+                newAlbum.setGroup(grupo);
+                System.out.println("Grupo :   " + grupo);
+            }
 
             // obtiene el ISBN del album
             exp = "Music/Album[@aid='" + eleAlbum.getAttribute("aid") + "']/ISBN";
-            temp = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);                 
-            System.out.println("ISBN :   " + temp.item(0).getTextContent().trim());
+            temp = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET); 
+            String isbn = temp.item(0).getTextContent().trim();   
+            newAlbum.setIsbn(isbn);             
+            System.out.println("ISBN :   " + isbn);
 
             // obtiene la compañía del album
             exp = "Music/Album[@aid='" + eleAlbum.getAttribute("aid") + "']/Company";
             temp = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);
-            if(temp.item(0) != null)                  
-            System.out.println("Compañía :   " + temp.item(0).getTextContent().trim());
+            if(temp.item(0) != null){  
+
+                String companhia = temp.item(0).getTextContent().trim();  
+                newAlbum.setCompany(companhia);                       
+                System.out.println("Compañía :   " + companhia);
+            }
 
             // obtiene la review del album
             exp = "Music/Album[@aid='" + eleAlbum.getAttribute("aid") + "']";
@@ -206,7 +236,8 @@ public class DataModel {
                         temp3.item(w).getTextContent()!=null &&
                         temp3.item(w).getTextContent().trim()!=""){
                         
-                        System.out.println("    Review: " + temp3.item(w).getTextContent().trim());
+                        String review = temp3.item(w).getTextContent().trim();
+                        System.out.println("    Review: " + review);
 
                         }
 
@@ -223,39 +254,56 @@ public class DataModel {
                 NodeList temp2;
 
                 System.out.println("\n   Leyendo una canción");
+                Song newSong = new Song();
                 Element eleSong = (Element)temp.item(z);         
 
-                // obtiene los atributos de la canción       
-                System.out.println("        sid:   " + eleSong.getAttribute("sid").trim());
-                System.out.println("        lang:   " + eleSong.getAttribute("lang").trim());
+                // obtiene los atributos de la canción 
+                String songId = eleSong.getAttribute("sid").trim();
+                String songLang = eleSong.getAttribute("lang").trim();
+                newSong.setSid(songId);
+                newSong.setLang(songLang);
+                System.out.println("        sid:   " + songId);
+                System.out.println("        lang:   " + songLang);
 
                 // obtiene el título de la canción
                 exp = "Music/Album[@aid='" + eleAlbum.getAttribute("aid") + "']/Song[@sid='" + eleSong.getAttribute("sid").trim() + "']/Title";
-                temp2 = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);                
-                System.out.println("        Título :   " + temp2.item(0).getTextContent().trim());
+                temp2 = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);    
+                String songTitle = temp2.item(0).getTextContent().trim();   
+                newSong.setTitle(songTitle);       
+                System.out.println("        Título :   " + songTitle);
 
                 // obtiene la duración de la canción
                 exp = "Music/Album[@aid='" + eleAlbum.getAttribute("aid") + "']/Song[@sid='" + eleSong.getAttribute("sid").trim() + "']/Duration";
-                temp2 = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);                
-                System.out.println("        Duración :   " + temp2.item(0).getTextContent().trim());
+                temp2 = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);
+                int songDuration = Integer.parseInt(temp2.item(0).getTextContent().trim());   
+                newSong.setDuration(songDuration);         
+                System.out.println("        Duración :   " + songDuration);
 
                 // obtiene los géneros de la canción
                 exp = "Music/Album[@aid='" + eleAlbum.getAttribute("aid") + "']/Song[@sid='" + eleSong.getAttribute("sid").trim() + "']/Genre";
                 temp2 = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);   
-
+                String generos = "";
                 for(int x = 0; x < temp2.getLength(); x++){
 
                     System.out.println("        Género :   " + temp2.item(x).getTextContent().trim());
+                    generos += " " + temp2.item(x).getTextContent().trim(); 
 
-                }       
+                }     
+                newSong.setGenres(generos);  
 
                 // obtiene el compositor de la canción
                 exp = "Music/Album[@aid='" + eleAlbum.getAttribute("aid") + "']/Song[@sid='" + eleSong.getAttribute("sid").trim() + "']/Composer";
-                temp2 = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);                
-                System.out.println("        Composer :   " + temp2.item(0).getTextContent().trim());
+                temp2 = (NodeList)xpath.evaluate(exp, archivo, XPathConstants.NODESET);   
+                String composer = temp2.item(0).getTextContent().trim();   
+                newSong.setComposer(composer);          
+                System.out.println("        Composer :   " + composer);
+
+                newAlbum.addSong(newSong);
 
 
             }
+
+            albumes.add(newAlbum);
 
         }
 

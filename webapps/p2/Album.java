@@ -13,8 +13,14 @@ public class Album {
     private String review;
     private ArrayList<Song> songs;
     private String aid;
-    private ArrayList<String> formats;
+    private String formats;
     private int year;
+
+
+    public Album(){        
+        
+        this.songs = new ArrayList<Song>();
+    };
 
     public Album(String name, String country, String company, String review){
 
@@ -63,7 +69,7 @@ public class Album {
         return this.aid;
     }
 
-    ArrayList<String> getFormats(){
+    String getFormats(){
         return this.formats;
     }
 
@@ -103,15 +109,15 @@ public class Album {
         this.songs = songs;
     }
 
-    void getAid(String aid){
+    void setAid(String aid){
         this.aid = aid;
     }
 
-    void setFormats(ArrayList<String> formats){
+    void setFormats(String formats){
         this.formats = formats;
     }
 
-    void getYear(int year){
+    void setYear(int year){
         this.year = year;
     }
 

@@ -6,13 +6,17 @@ public class Song {
 
     private String title;
     private int duration;
-    private ArrayList<String> genres;
+    private String genres;
     private String composer;
     private ArrayList<String> mumls;
     private String sid;
     private String lang;
 
-    public Song(String title, int duration, ArrayList<String> genres, String composer, ArrayList<String> mumls, String sid, String lang){
+    public Song(){
+        
+    }
+
+    public Song(String title, int duration, String genres, String composer, ArrayList<String> mumls, String sid, String lang){
 
         this.title = title;
         this.duration = duration;
@@ -38,7 +42,7 @@ public class Song {
         return this.duration;
     }
 
-    ArrayList<String> getGenres(){
+    String getGenres(){
         return this.genres;
     }
 
@@ -66,7 +70,7 @@ public class Song {
         this.duration = duration;
     }
 
-    void setGenres(ArrayList<String> genres){
+    void setGenres(String genres){
         this.genres = genres;
     }
 
