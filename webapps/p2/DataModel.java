@@ -42,10 +42,10 @@ public class DataModel {
         xpath = xpathFactory.newXPath();
 
         dbf = DocumentBuilderFactory.newInstance();
-        dbf.setValidating(true);
-		dbf.setNamespaceAware(true);
-		dbf.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);        
-		dbf.setAttribute(JAXP_SCHEMA_SOURCE, mumlSchema); 
+        //dbf.setValidating(false);
+		//dbf.setNamespaceAware(true);
+		//dbf.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);        
+		//dbf.setAttribute(JAXP_SCHEMA_SOURCE, mumlSchema); 
         db = dbf.newDocumentBuilder();
         db.setErrorHandler(new ErrorHandler());
 
@@ -122,7 +122,9 @@ public class DataModel {
         }
         catch(SAXException se) {
 
-            System.out.println("----- NO WELL-FORMED:   " + url + "     -----");             
+            System.out.println("----- NO WELL-FORMED:   " + url + "     -----");   
+            System.out.println(se);  
+                    
             return;          
             
         }

@@ -2,9 +2,11 @@ package p2;
 import java.io.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
+
 import java.util.ArrayList;
 
 // this.log("se imprime en tomcat/logs/localhost.fechadehoy.log");
+
 
 public class Sint500P2 extends HttpServlet {
 
